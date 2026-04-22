@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import {
   ShieldCheck,
   TrendingUp,
@@ -24,6 +24,7 @@ const stagger = {
   },
 };
 
+
 export default function App() {
   return (
     <div className="font-sans text-gray-900 bg-white">
@@ -35,7 +36,7 @@ export default function App() {
       <Testimonials />
       <LeadForm />
       <Footer />
-      <WhatsAppButton />
+      <FloatingSocials />
     </div>
   );
 }
@@ -102,7 +103,7 @@ const Hero = () => (
       </motion.h1>
       {/* TRUST LINE (cleaner, less repetitive) */}
       <motion.p variants={fadeUp} className="mt-4 text-sm text-gray-500">
-        Trusted by 500+ clients • 10+ years experience
+        Trusted by 50+ clients • 5+ years experience
       </motion.p>
       <motion.p
         variants={fadeUp}
@@ -146,15 +147,15 @@ const TrustStrip = () => (
   <div className="py-12 border-y border-gray-200 bg-gray-50">
     <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div>
-        <p className="text-2xl font-bold text-blue-900">10+ Years</p>
+        <p className="text-2xl font-bold text-blue-900">5+ Years</p>
         <p className="text-sm text-gray-500 mt-1">Experience</p>
       </div>
       <div>
-        <p className="text-2xl font-bold text-blue-900">500+</p>
+        <p className="text-2xl font-bold text-blue-900">50+</p>
         <p className="text-sm text-gray-500 mt-1">Clients Served</p>
       </div>
       <div>
-        <p className="text-2xl font-bold text-blue-900">₹50k+</p>
+        <p className="text-2xl font-bold text-blue-900">₹20L+</p>
         <p className="text-sm text-gray-500 mt-1">Assets Managed</p>
       </div>
       <div>
@@ -242,18 +243,18 @@ const HowItWorks = () => (
 );
 const testimonials = [
   {
-    name: "Rahul Mehta",
-    role: "Software Engineer, Delhi",
+    name: "Rachita Sharma",
+    role: "Government Employee",
     text: "I always delayed investing because it felt confusing. Sucheta made everything simple and helped me start SIPs with confidence. Now I finally feel in control of my finances.",
   },
   {
-    name: "Priya Sharma",
-    role: "Doctor, Gurgaon",
+    name: "Mahesh Naithani",
+    role: "Government Employee",
     text: "I wanted a clear plan for my future but didn’t know where to begin. The guidance I received was honest, practical, and easy to follow. Highly recommended.",
   },
   {
-    name: "Amit Verma",
-    role: "Business Owner, Noida",
+    name: "Rahul Bhatt",
+    role: "Technical Engineer",
     text: "Very professional and trustworthy. From insurance to investments, everything was explained clearly without any pressure. I now have a proper financial plan in place.",
   },
 ];
@@ -288,7 +289,6 @@ const Testimonials = () => (
     </div>
   </div>
 );
-
 const LeadForm = () => {
   const [form, setForm] = useState({
     name: "",
@@ -301,7 +301,9 @@ const LeadForm = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 🔥 important
+
     const { name, phone, email, service } = form;
 
     if (!name || !phone) {
@@ -318,12 +320,9 @@ Service: ${service}
 
 Sent from Website`;
 
-    const whatsappUrl = `https://wa.me/917703809497?text=${encodeURIComponent(
-      message,
-    )}`;
+    const whatsappUrl = `https://wa.me/917703809497?text=${encodeURIComponent(message)}`;
 
     window.open(whatsappUrl, "_blank");
-    alert("Redirecting you to WhatsApp...");
 
     setForm({
       name: "",
@@ -336,7 +335,10 @@ Sent from Website`;
   return (
     <div id="lead-form" className="py-24 bg-gray-50">
       <div className="max-w-xl mx-auto px-6">
-        <div className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100">
+        <form
+          onSubmit={handleSubmit} // ✅ use form submit
+          className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
+        >
           <h2 className="text-2xl font-bold text-center">
             Get Your Free Financial Plan
           </h2>
@@ -385,30 +387,51 @@ Sent from Website`;
             </select>
 
             <button
-              onClick={handleSubmit}
+              type="submit" // ✅ important
               className="bg-blue-900 text-white py-3 rounded-xl hover:scale-105 transition font-medium"
             >
               Get My Free Plan
             </button>
-
-            <p className="text-xs text-gray-500 text-center">
-              Limited free consultations available this week
-            </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
 };
-const WhatsAppButton = () => (
-  <a
-    href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all duration-300"
-  >
-    <Phone />
-  </a>
+const FloatingSocials = () => (
+  <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+
+    {/* WhatsApp */}
+    <a
+      href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+    >
+      <Phone size={20} />
+    </a>
+
+    {/* Instagram */}
+    <a
+      href="https://www.instagram.com/suchijoshi86/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-gradient-to-br from-pink-500 to-yellow-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+    >
+      <FaInstagram size={20} />
+    </a>
+
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/sucheta.joshi.14"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+    >
+      <FaFacebookF size={20} />
+    </a>
+
+  </div>
 );
 
 const Footer = () => (
