@@ -32,6 +32,9 @@ export default function App() {
       <Hero />
       <TrustStrip />
       <Services />
+      <WhyInvestEarly />
+      <ChildEducationPlanning />
+      <RetirementSection />
       <HowItWorks />
       <Testimonials />
       <LeadForm />
@@ -87,31 +90,35 @@ const Navbar = () => (
 
 const Hero = () => (
   <div className="pt-32 pb-24 bg-gradient-to-b from-blue-50 via-white to-white relative overflow-hidden">
-    {" "}
     <motion.div
       initial="hidden"
       animate="show"
       variants={stagger}
       className="max-w-7xl mx-auto px-6 text-center"
     >
-      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-200/30 blur-3xl rounded-full pointer-events-none"></div>{" "}
+      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-200/30 blur-3xl rounded-full pointer-events-none"></div>
+
       <motion.h1
         variants={fadeUp}
-        className="p-6 rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+        className="text-4xl md:text-5xl font-bold leading-tight text-gray-900"
       >
-        Grow Your Wealth. Secure Your Future.
+        Grow Your Wealth. <br />
+        Secure Your Family’s Future.
       </motion.h1>
-      {/* TRUST LINE (cleaner, less repetitive) */}
+
       <motion.p variants={fadeUp} className="mt-4 text-sm text-gray-500">
-        Trusted by 50+ clients • 5+ years experience
+        Trusted by 50+ families • 5+ years experience • Personalized financial guidance
       </motion.p>
+
       <motion.p
         variants={fadeUp}
-        className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto"
+        className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
       >
-        Get personalized guidance on SIPs, Mutual Funds, Insurance & Retirement
-        planning — designed to help you build wealth without confusion.
+        Secure your family’s future with smart investments, life insurance,
+        retirement planning, and wealth-building strategies designed around
+        your goals—not confusion.
       </motion.p>
+
       <motion.div
         variants={fadeUp}
         className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
@@ -136,10 +143,64 @@ const Hero = () => (
           Talk to Sucheta →
         </button>
       </motion.div>
+
       <motion.p variants={fadeUp} className="mt-4 text-sm text-gray-500">
         No spam. No pressure. Takes less than 60 seconds.
       </motion.p>
     </motion.div>
+  </div>
+);
+const WhyInvestEarly = () => (
+  <div className="py-24 bg-white">
+    <div className="max-w-6xl mx-auto px-6 text-center">
+      <h2 className="text-3xl font-bold">
+        Why People Should Invest Early
+      </h2>
+
+      <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
+        The younger and healthier we are, the more affordable investments
+        become. Starting early gives your money more time to grow through
+        compounding, helping you build wealth faster while reducing financial
+        stress later in life.
+      </p>
+    </div>
+  </div>
+);
+
+
+
+const ChildEducationPlanning = () => (
+  <div className="py-24 bg-gray-50">
+    <div className="max-w-6xl mx-auto px-6 text-center">
+      <h2 className="text-3xl font-bold">
+        Child Education Planning
+      </h2>
+
+      <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
+        Investing early for your child’s education helps beat rising education
+        inflation and avoids future financial burden. Small monthly investments
+        today can create a strong education fund tomorrow—ensuring your child’s
+        dreams are never limited by money.
+      </p>
+    </div>
+  </div>
+);
+
+
+const RetirementSection = () => (
+  <div className="py-24 bg-white">
+    <div className="max-w-6xl mx-auto px-6 text-center">
+      <h2 className="text-3xl font-bold">
+        Retirement & Financial Freedom
+      </h2>
+
+      <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
+        There’s no greater peace than knowing your financial future does not
+        depend on your job, your boss, or the economy. Retirement planning
+        helps you achieve true financial independence and gives you the freedom
+        to live life on your own terms.
+      </p>
+    </div>
   </div>
 );
 
@@ -170,32 +231,38 @@ const services = [
   {
     icon: <TrendingUp />,
     title: "Mutual Funds & SIP",
-    desc: "Start small and grow your wealth consistently over time",
+    short: "Start small and grow your wealth consistently.",
+    long: "Mutual Funds and SIPs help you invest regularly with discipline, allowing your money to grow through compounding and long-term wealth creation.",
   },
   {
     icon: <Wallet />,
     title: "SWP (Passive Income)",
-    desc: "Turn your investments into a reliable monthly income",
+    short: "Create regular monthly income from investments.",
+    long: "A Systematic Withdrawal Plan allows you to withdraw fixed income monthly while keeping your remaining capital invested and growing.",
   },
   {
     icon: <ShieldCheck />,
     title: "Life & Term Insurance",
-    desc: "Ensure your family stays financially secure, no matter what",
+    short: "Protect your family’s future financially.",
+    long: "Term insurance ensures your loved ones stay financially secure with high life coverage at affordable premiums and valuable tax benefits.",
   },
   {
     icon: <PieChart />,
     title: "ULIP Plans",
-    desc: "Combine insurance and investment in one disciplined plan",
+    short: "Insurance + Investment in one smart plan.",
+    long: "ULIPs combine life cover and investment flexibility, allowing fund switching between equity, debt, and balanced funds while building tax-efficient wealth.",
   },
   {
     icon: <ShieldCheck />,
     title: "Health Insurance",
-    desc: "Avoid financial stress during unexpected medical expenses",
+    short: "Protect savings from medical emergencies.",
+    long: "Health insurance ensures quality treatment without financial stress by covering hospitalization, treatments, and rising healthcare costs.",
   },
   {
     icon: <PieChart />,
     title: "Retirement Planning",
-    desc: "Build a retirement corpus so you never depend on anyone",
+    short: "Build financial freedom for your future.",
+    long: "Retirement planning helps create a strong corpus so your future depends on your wealth—not your job, boss, or the economy.",
   },
 ];
 
@@ -444,36 +511,55 @@ const Footer = () => (
 );
 
 const Services = () => (
-  <div id="services" className="py-24">
+  <div id="services" className="py-24 bg-white">
     <div className="max-w-7xl mx-auto px-6 text-center">
-      <h2 className="text-3xl font-bold">
+      <h2 className="text-4xl font-bold">
         Financial Solutions Tailored for You
       </h2>
 
-      <p className="text-gray-500 mt-3">
-        Simple, transparent strategies to grow and protect your wealth
+      <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
+        Hover on each card to explore how each financial solution helps secure
+        your future and grow your wealth.
       </p>
 
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
-      >
-        {services.map((s, i) => (
-          <motion.div
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+        {services.map((service, i) => (
+          <div
             key={i}
-            variants={fadeUp}
-            className="p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition"
+            className="group [perspective:1000px] h-[320px]"
           >
-            <div className="mb-4 w-10 h-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-900">
-              {s.icon}
-            </div>{" "}
-            <h3 className="font-semibold">{s.title}</h3>
-            <p className="text-sm text-gray-500 mt-2">{s.desc}</p>
-          </motion.div>
+            <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+              {/* FRONT SIDE */}
+              <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl shadow-md p-8 [backface-visibility:hidden] flex flex-col justify-center items-center text-center">
+                <div className="mb-5 w-14 h-14 flex items-center justify-center rounded-xl bg-blue-50 text-blue-900">
+                  {service.icon}
+                </div>
+
+                <h3 className="text-xl font-semibold">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-gray-500 mt-3">
+                  {service.short}
+                </p>
+              </div>
+
+              {/* BACK SIDE */}
+              <div className="absolute inset-0 bg-blue-900 text-white rounded-2xl shadow-xl p-8 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center text-center">
+                <h3 className="text-xl font-semibold mb-4">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm leading-relaxed text-blue-50">
+                  {service.long}
+                </p>
+              </div>
+
+            </div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   </div>
 );
