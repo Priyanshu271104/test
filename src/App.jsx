@@ -24,7 +24,6 @@ const stagger = {
   },
 };
 
-
 export default function App() {
   return (
     <div className="font-sans text-gray-900 bg-white">
@@ -107,7 +106,8 @@ const Hero = () => (
       </motion.h1>
 
       <motion.p variants={fadeUp} className="mt-4 text-sm text-gray-500">
-        Trusted by 50+ families • 5+ years experience • Personalized financial guidance
+        Trusted by 50+ families • 5+ years experience • Personalized financial
+        guidance
       </motion.p>
 
       <motion.p
@@ -115,8 +115,8 @@ const Hero = () => (
         className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
       >
         Secure your family’s future with smart investments, life insurance,
-        retirement planning, and wealth-building strategies designed around
-        your goals—not confusion.
+        retirement planning, and wealth-building strategies designed around your
+        goals—not confusion.
       </motion.p>
 
       <motion.div
@@ -135,6 +135,14 @@ const Hero = () => (
 
         <button
           onClick={() => {
+            if (window.gtag) {
+              window.gtag("event", "whatsapp_click", {
+                event_category: "Lead",
+                event_label: "Hero WhatsApp Button",
+                value: 1,
+              });
+            }
+
             window.location.href =
               "https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20to%20discuss%20my%20financial%20plan";
           }}
@@ -153,9 +161,7 @@ const Hero = () => (
 const WhyInvestEarly = () => (
   <div className="py-24 bg-white">
     <div className="max-w-6xl mx-auto px-6 text-center">
-      <h2 className="text-3xl font-bold">
-        Why People Should Invest Early
-      </h2>
+      <h2 className="text-3xl font-bold">Why People Should Invest Early</h2>
 
       <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
         The younger and healthier we are, the more affordable investments
@@ -167,14 +173,10 @@ const WhyInvestEarly = () => (
   </div>
 );
 
-
-
 const ChildEducationPlanning = () => (
   <div className="py-24 bg-gray-50">
     <div className="max-w-6xl mx-auto px-6 text-center">
-      <h2 className="text-3xl font-bold">
-        Child Education Planning
-      </h2>
+      <h2 className="text-3xl font-bold">Child Education Planning</h2>
 
       <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
         Investing early for your child’s education helps beat rising education
@@ -186,19 +188,16 @@ const ChildEducationPlanning = () => (
   </div>
 );
 
-
 const RetirementSection = () => (
   <div className="py-24 bg-white">
     <div className="max-w-6xl mx-auto px-6 text-center">
-      <h2 className="text-3xl font-bold">
-        Retirement & Financial Freedom
-      </h2>
+      <h2 className="text-3xl font-bold">Retirement & Financial Freedom</h2>
 
       <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
         There’s no greater peace than knowing your financial future does not
-        depend on your job, your boss, or the economy. Retirement planning
-        helps you achieve true financial independence and gives you the freedom
-        to live life on your own terms.
+        depend on your job, your boss, or the economy. Retirement planning helps
+        you achieve true financial independence and gives you the freedom to
+        live life on your own terms.
       </p>
     </div>
   </div>
@@ -388,6 +387,13 @@ Service: ${service}
 Sent from Website`;
 
     const whatsappUrl = `https://wa.me/917703809497?text=${encodeURIComponent(message)}`;
+if (window.gtag) {
+window.gtag("event", "generate_lead", {
+event_category: "Lead",
+event_label: "Lead Form Submission",
+value: 1,
+});
+}
 
     window.open(whatsappUrl, "_blank");
 
@@ -467,14 +473,24 @@ Sent from Website`;
 };
 const FloatingSocials = () => (
   <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-
     {/* WhatsApp */}
     <a
-      href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
-    >
+href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
+target="_blank"
+rel="noopener noreferrer"
+onClick={() => {
+if (window.gtag) {
+window.gtag("event", "whatsapp_click", {
+event_category: "Lead",
+event_label: "Floating WhatsApp Button",
+value: 1,
+});
+}
+}}
+className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+
+>
+
       <Phone size={20} />
     </a>
 
@@ -497,7 +513,6 @@ const FloatingSocials = () => (
     >
       <FaFacebookF size={20} />
     </a>
-
   </div>
 );
 
@@ -524,38 +539,27 @@ const Services = () => (
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
         {services.map((service, i) => (
-          <div
-            key={i}
-            className="group [perspective:1000px] h-[320px]"
-          >
+          <div key={i} className="group [perspective:1000px] h-[320px]">
             <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
               {/* FRONT SIDE */}
               <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl shadow-md p-8 [backface-visibility:hidden] flex flex-col justify-center items-center text-center">
                 <div className="mb-5 w-14 h-14 flex items-center justify-center rounded-xl bg-blue-50 text-blue-900">
                   {service.icon}
                 </div>
 
-                <h3 className="text-xl font-semibold">
-                  {service.title}
-                </h3>
+                <h3 className="text-xl font-semibold">{service.title}</h3>
 
-                <p className="text-sm text-gray-500 mt-3">
-                  {service.short}
-                </p>
+                <p className="text-sm text-gray-500 mt-3">{service.short}</p>
               </div>
 
               {/* BACK SIDE */}
               <div className="absolute inset-0 bg-blue-900 text-white rounded-2xl shadow-xl p-8 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center text-center">
-                <h3 className="text-xl font-semibold mb-4">
-                  {service.title}
-                </h3>
+                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
 
                 <p className="text-sm leading-relaxed text-blue-50">
                   {service.long}
                 </p>
               </div>
-
             </div>
           </div>
         ))}
