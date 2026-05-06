@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import poster from "./assets/poster.jpg";
+import advisorVideo from "./assets/advisor-video.mp4";
 import {
   ShieldCheck,
   TrendingUp,
@@ -34,7 +36,17 @@ export default function App() {
       <WhyInvestEarly />
       <ChildEducationPlanning />
       <RetirementSection />
+      <AdvisorVideo />
       <HowItWorks />
+      <div className="py-10 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <img
+            src={poster}
+            alt="Financial Advisor"
+            className="rounded-2xl shadow-lg"
+          />
+        </div>
+      </div>
       <Testimonials />
       <LeadForm />
       <Footer />
@@ -104,6 +116,13 @@ const Hero = () => (
         Grow Your Wealth. <br />
         Secure Your Family’s Future.
       </motion.h1>
+      <motion.div variants={fadeUp} className="mt-8 flex justify-center">
+        <img
+          src={poster}
+          alt="Pahadi Finance Funda"
+          className="rounded-3xl shadow-2xl border border-gray-200 max-w-4xl w-full object-cover"
+        />
+      </motion.div>
 
       <motion.p variants={fadeUp} className="mt-4 text-sm text-gray-500">
         Trusted by 50+ families • 5+ years experience • Personalized financial
@@ -199,6 +218,29 @@ const RetirementSection = () => (
         you achieve true financial independence and gives you the freedom to
         live life on your own terms.
       </p>
+    </div>
+  </div>
+);
+const AdvisorVideo = () => (
+  <div className="py-24 bg-gray-50">
+    <div className="max-w-5xl mx-auto px-6 text-center">
+      <h2 className="text-3xl font-bold">Meet Your Financial Advisor</h2>
+
+      <p className="text-gray-500 mt-3 mb-10">
+        Personalized guidance to help secure your future.
+      </p>
+
+      <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+        <video
+          src={advisorVideo}
+          autoPlay
+          muted
+          loop
+          controls
+          playsInline
+          className="w-full"
+        />
+      </div>
     </div>
   </div>
 );
@@ -387,13 +429,13 @@ Service: ${service}
 Sent from Website`;
 
     const whatsappUrl = `https://wa.me/917703809497?text=${encodeURIComponent(message)}`;
-if (window.gtag) {
-window.gtag("event", "generate_lead", {
-event_category: "Lead",
-event_label: "Lead Form Submission",
-value: 1,
-});
-}
+    if (window.gtag) {
+      window.gtag("event", "generate_lead", {
+        event_category: "Lead",
+        event_label: "Lead Form Submission",
+        value: 1,
+      });
+    }
 
     window.open(whatsappUrl, "_blank");
 
@@ -475,22 +517,20 @@ const FloatingSocials = () => (
   <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
     {/* WhatsApp */}
     <a
-href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
-target="_blank"
-rel="noopener noreferrer"
-onClick={() => {
-if (window.gtag) {
-window.gtag("event", "whatsapp_click", {
-event_category: "Lead",
-event_label: "Floating WhatsApp Button",
-value: 1,
-});
-}
-}}
-className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
-
->
-
+      href="https://wa.me/917703809497?text=Hi%20Sucheta,%20I%20want%20a%20financial%20plan"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => {
+        if (window.gtag) {
+          window.gtag("event", "whatsapp_click", {
+            event_category: "Lead",
+            event_label: "Floating WhatsApp Button",
+            value: 1,
+          });
+        }
+      }}
+      className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+    >
       <Phone size={20} />
     </a>
 
