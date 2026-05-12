@@ -38,15 +38,6 @@ export default function App() {
       <RetirementSection />
       <AdvisorVideo />
       <HowItWorks />
-      <div className="py-10 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <img
-            src={poster}
-            alt="Financial Advisor"
-            className="rounded-2xl shadow-lg"
-          />
-        </div>
-      </div>
       <Testimonials />
       <LeadForm />
       <Footer />
@@ -57,13 +48,22 @@ export default function App() {
 
 const Navbar = () => (
   <div className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 border-b border-gray-100">
-    <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
       {/* BRAND */}
-      <div className="flex flex-col leading-tight">
-        <span className="font-semibold text-lg text-gray-900">
-          Sucheta Bhatt
-        </span>
-        <span className="text-xs text-gray-500">Financial Advisor</span>
+      <div className="flex items-center gap-3">
+        <img
+          src="/logo.png"
+          alt="Pahadi Finance Funda Logo"
+          className="w-20 h-20 object-contain"
+        />
+
+        <div className="flex flex-col leading-tight">
+          <span className="font-semibold text-lg text-gray-900">
+            Sucheta Bhatt
+          </span>
+
+          <span className="text-xs text-gray-500">Financial Advisor</span>
+        </div>
       </div>
 
       {/* NAV LINKS */}
@@ -236,8 +236,8 @@ const AdvisorVideo = () => (
           autoPlay
           muted
           loop
-          controls
           playsInline
+          controls
           className="w-full"
         />
       </div>
