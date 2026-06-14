@@ -93,7 +93,7 @@ const Navbar = () => (
         }}
         className="bg-blue-900 text-white px-5 py-2 rounded-xl shadow-sm hover:shadow-md hover:scale-105 transition"
       >
-        Book Free Consultation
+        Book Consultation
       </button>
     </div>
   </div>
@@ -149,7 +149,7 @@ const Hero = () => (
           }}
           className="bg-blue-900 text-white px-6 py-3 rounded-xl shadow-md hover:scale-105 transition"
         >
-          Get Free Financial Plan
+          Get Financial Plan
         </button>
 
         <button
@@ -455,7 +455,7 @@ Sent from Website`;
           className="p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
         >
           <h2 className="text-2xl font-bold text-center">
-            Get Your Free Financial Plan
+            Get Your Financial Plan
           </h2>
 
           <p className="text-center text-gray-500 text-sm mt-2">
@@ -505,7 +505,7 @@ Sent from Website`;
               type="submit" // ✅ important
               className="bg-blue-900 text-white py-3 rounded-xl hover:scale-105 transition font-medium"
             >
-              Get My Free Plan
+              Get My Plan
             </button>
           </div>
         </form>
