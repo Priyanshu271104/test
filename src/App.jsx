@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import poster from "./assets/poster.jpg";
 import advisorVideo from "./assets/advisor-video.mp4";
+import retirementVideo from "./assets/retirement.mp4";
+
 import {
   ShieldCheck,
   TrendingUp,
@@ -565,45 +568,106 @@ const Footer = () => (
   </div>
 );
 
-const Services = () => (
-  <div id="services" className="py-24 bg-white">
-    <div className="max-w-7xl mx-auto px-6 text-center">
-      <h2 className="text-4xl font-bold">
-        Financial Solutions Tailored for You
-      </h2>
+const Services = () => {
+  const [showRetirementVideo, setShowRetirementVideo] = useState(false);
 
-      <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
-        Hover on each card to explore how each financial solution helps secure
-        your future and grow your wealth.
-      </p>
+  const closeRetirementVideo = () => {
+    setShowRetirementVideo(false);
+  };
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
-        {services.map((service, i) => (
-          <div key={i} className="group [perspective:1000px] h-[320px]">
-            <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-              {/* FRONT SIDE */}
-              <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl shadow-md p-8 [backface-visibility:hidden] flex flex-col justify-center items-center text-center">
-                <div className="mb-5 w-14 h-14 flex items-center justify-center rounded-xl bg-blue-50 text-blue-900">
-                  {service.icon}
+  return (
+    <>
+      <div id="services" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold">
+            Financial Solutions Tailored for You
+          </h2>
+
+          <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
+            Hover on each card to explore how each financial solution helps
+            secure your future and grow your wealth.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+            {services.map((service, i) => {
+              const isRetirement = service.title === "Retirement Planning";
+
+              return (
+                <div key={i} className="group [perspective:1000px] h-[320px]">
+                  <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                    {/* FRONT SIDE */}
+                    <div className="absolute inset-0 bg-white border border-gray-200 rounded-2xl shadow-md p-8 [backface-visibility:hidden] flex flex-col justify-center items-center text-center">
+                      <div className="mb-5 w-14 h-14 flex items-center justify-center rounded-xl bg-blue-50 text-blue-900">
+                        {service.icon}
+                      </div>
+
+                      <h3 className="text-xl font-semibold">{service.title}</h3>
+
+                      <p className="text-sm text-gray-500 mt-3">
+                        {service.short}
+                      </p>
+                    </div>
+
+                    {/* BACK SIDE */}
+                    <div className="absolute inset-0 bg-blue-900 text-white rounded-2xl shadow-xl p-8 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center text-center">
+                      <h3 className="text-xl font-semibold mb-4">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-sm leading-relaxed text-blue-50">
+                        {service.long}
+                      </p>
+
+                      {/* WATCH VIDEO BUTTON - ONLY RETIREMENT */}
+                      {isRetirement && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowRetirementVideo(true);
+                          }}
+                          className="mt-6 mx-auto flex items-center gap-2 bg-white text-blue-900 px-5 py-2.5 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300"
+                        >
+                          ▶ Watch Video
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-
-                <h3 className="text-xl font-semibold">{service.title}</h3>
-
-                <p className="text-sm text-gray-500 mt-3">{service.short}</p>
-              </div>
-
-              {/* BACK SIDE */}
-              <div className="absolute inset-0 bg-blue-900 text-white rounded-2xl shadow-xl p-8 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center text-center">
-                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-
-                <p className="text-sm leading-relaxed text-blue-50">
-                  {service.long}
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  </div>
-);
+
+      {/* RETIREMENT VIDEO POPUP */}
+      {showRetirementVideo && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={closeRetirementVideo}
+        >
+          <div
+            className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={closeRetirementVideo}
+              className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/70 text-white text-xl flex items-center justify-center hover:bg-black transition"
+            >
+              ✕
+            </button>
+
+            {/* VIDEO */}
+            <video
+              src={retirementVideo}
+              controls
+              autoPlay
+              playsInline
+              className="w-full max-h-[80vh] object-contain"
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
