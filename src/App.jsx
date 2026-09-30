@@ -260,7 +260,7 @@ const TrustStrip = () => (
         <p className="text-sm text-gray-500 mt-1">Clients Served</p>
       </div>
       <div>
-        <p className="text-2xl font-bold text-blue-900">₹20L+</p>
+        <p className="text-2xl font-bold text-blue-900">₹30L+</p>
         <p className="text-sm text-gray-500 mt-1">Assets Managed</p>
       </div>
       <div>
